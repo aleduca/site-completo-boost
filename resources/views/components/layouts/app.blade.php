@@ -8,15 +8,17 @@
 
     <title>{{ $title ? $title . ' - Clube Full-Stack' : 'Clube Full-Stack - Aulas do YouTube' }}</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
+    <!-- Google Fonts Preconnect & Kode Mono Stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
 
     <!-- Styles and Scripts via Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body
-    class="min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased selection:bg-red-500 selection:text-white"
-    x-data="{ sidebarOpen: true, mobileSidebarOpen: false }"
+    class="min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased selection:bg-brand selection:text-white"
+    x-data="{ sidebarOpen: false, mobileSidebarOpen: false }"
 >
     <!-- Header -->
     <x-header />

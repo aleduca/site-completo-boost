@@ -24,14 +24,15 @@
     x-transition:leave-end="-translate-x-full"
     class="fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-zinc-800 bg-zinc-900 p-4 md:hidden shadow-2xl"
 >
-    <!-- Header da Sidebar Mobile -->
+    <!-- Header da Sidebar Mobile com Logo sem background -->
     <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
-        <div class="flex items-center gap-2">
-            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-red-600 text-white font-bold text-sm">
-                CF
-            </div>
-            <span class="font-bold text-zinc-100">Clube Full-Stack</span>
-        </div>
+        <a href="{{ route('home') }}" class="flex items-center bg-transparent">
+            <img
+                src="{{ asset('logo/logo.png') }}"
+                alt="Clube Full-Stack"
+                class="h-8 w-auto object-contain bg-transparent"
+            >
+        </a>
         <button
             type="button"
             @click="mobileSidebarOpen = false"
@@ -47,7 +48,7 @@
     <nav class="mt-4 flex flex-1 flex-col gap-1.5">
         <a
             href="{{ route('lessons.index') }}"
-            class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors {{ request()->routeIs('lessons.index') || request()->routeIs('home') ? 'bg-red-600/15 text-red-400 ring-1 ring-red-500/20' : 'text-zinc-300 hover:bg-zinc-800 hover:text-white' }}"
+            class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors {{ request()->routeIs('lessons.index') || request()->routeIs('home') ? 'bg-brand/20 text-brand-300 ring-1 ring-brand-500/30' : 'text-zinc-300 hover:bg-zinc-800 hover:text-white' }}"
         >
             <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
@@ -57,7 +58,7 @@
 
         <a
             href="{{ route('courses.index') }}"
-            class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors {{ request()->routeIs('courses.*') ? 'bg-red-600/15 text-red-400 ring-1 ring-red-500/20' : 'text-zinc-300 hover:bg-zinc-800 hover:text-white' }}"
+            class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors {{ request()->routeIs('courses.*') ? 'bg-brand/20 text-brand-300 ring-1 ring-brand-500/30' : 'text-zinc-300 hover:bg-zinc-800 hover:text-white' }}"
         >
             <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
@@ -67,7 +68,7 @@
 
         <a
             href="{{ route('categories.index') }}"
-            class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors {{ request()->routeIs('categories.*') ? 'bg-red-600/15 text-red-400 ring-1 ring-red-500/20' : 'text-zinc-300 hover:bg-zinc-800 hover:text-white' }}"
+            class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors {{ request()->routeIs('categories.*') ? 'bg-brand/20 text-brand-300 ring-1 ring-brand-500/30' : 'text-zinc-300 hover:bg-zinc-800 hover:text-white' }}"
         >
             <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
@@ -84,7 +85,7 @@
                 @csrf
                 <button
                     type="submit"
-                    class="w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-400 hover:bg-zinc-800 hover:text-red-300 transition-colors"
+                    class="w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-brand-300 hover:bg-zinc-800 hover:text-white transition-colors"
                 >
                     <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
@@ -116,7 +117,7 @@
         <!-- Link Aulas -->
         <a
             href="{{ route('lessons.index') }}"
-            class="group flex items-center rounded-xl p-3 text-sm font-medium transition-all {{ request()->routeIs('lessons.index') || request()->routeIs('home') ? 'bg-red-600/15 text-red-400 ring-1 ring-red-500/20' : 'text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-100' }}"
+            class="group flex items-center rounded-xl p-3 text-sm font-medium transition-all {{ request()->routeIs('lessons.index') || request()->routeIs('home') ? 'bg-brand/20 text-brand-300 ring-1 ring-brand-500/30' : 'text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-100' }}"
             :class="sidebarOpen ? 'gap-3.5 justify-start' : 'justify-center'"
             title="Aulas"
         >
@@ -137,7 +138,7 @@
         <!-- Link Cursos -->
         <a
             href="{{ route('courses.index') }}"
-            class="group flex items-center rounded-xl p-3 text-sm font-medium transition-all {{ request()->routeIs('courses.*') ? 'bg-red-600/15 text-red-400 ring-1 ring-red-500/20' : 'text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-100' }}"
+            class="group flex items-center rounded-xl p-3 text-sm font-medium transition-all {{ request()->routeIs('courses.*') ? 'bg-brand/20 text-brand-300 ring-1 ring-brand-500/30' : 'text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-100' }}"
             :class="sidebarOpen ? 'gap-3.5 justify-start' : 'justify-center'"
             title="Cursos"
         >
@@ -158,7 +159,7 @@
         <!-- Link Categorias -->
         <a
             href="{{ route('categories.index') }}"
-            class="group flex items-center rounded-xl p-3 text-sm font-medium transition-all {{ request()->routeIs('categories.*') ? 'bg-red-600/15 text-red-400 ring-1 ring-red-500/20' : 'text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-100' }}"
+            class="group flex items-center rounded-xl p-3 text-sm font-medium transition-all {{ request()->routeIs('categories.*') ? 'bg-brand/20 text-brand-300 ring-1 ring-brand-500/30' : 'text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-100' }}"
             :class="sidebarOpen ? 'gap-3.5 justify-start' : 'justify-center'"
             title="Categorias"
         >
@@ -185,7 +186,7 @@
                 @csrf
                 <button
                     type="submit"
-                    class="w-full group flex items-center rounded-xl p-3 text-sm font-medium transition-all text-red-400 hover:bg-zinc-800/80 hover:text-red-300"
+                    class="w-full group flex items-center rounded-xl p-3 text-sm font-medium transition-all text-brand-300 hover:bg-zinc-800/80 hover:text-brand-200"
                     :class="sidebarOpen ? 'gap-3.5 justify-start' : 'justify-center'"
                     title="Sair"
                 >

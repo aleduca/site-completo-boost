@@ -1,13 +1,15 @@
 <x-layouts.app title="Entrar">
     <div class="mx-auto flex min-h-[60vh] max-w-md flex-col justify-center py-8 sm:py-12">
         <div class="rounded-2xl border border-zinc-800 bg-zinc-900/90 p-6 sm:p-8 shadow-xl">
-            <!-- Cabeçalho do Card -->
+            <!-- Cabeçalho do Card com Logo sem cor de background -->
             <div class="text-center mb-6">
-                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-red-600 to-rose-500 shadow-lg shadow-red-500/25 mb-4">
-                    <svg class="h-6 w-6 fill-white" viewBox="0 0 24 24">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                </div>
+                <a href="{{ route('home') }}" class="inline-block bg-transparent mb-3">
+                    <img
+                        src="{{ asset('logo/logo.png') }}"
+                        alt="Clube Full-Stack"
+                        class="h-12 sm:h-14 w-auto object-contain bg-transparent mx-auto transition-transform duration-200 hover:scale-105"
+                    >
+                </a>
                 <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white">Acesse o Clube Full-Stack</h2>
                 <p class="text-xs sm:text-sm text-zinc-400 mt-1">Entre com seu e-mail e senha para continuar</p>
             </div>
@@ -47,7 +49,7 @@
                         value="{{ old('email', 'admin@clubefullstack.com') }}"
                         required
                         autofocus
-                        class="w-full rounded-xl border {{ $errors->has('email') ? 'border-red-500 ring-1 ring-red-500' : 'border-zinc-700' }} bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors"
+                        class="w-full rounded-xl border {{ $errors->has('email') ? 'border-red-500 ring-1 ring-red-500' : 'border-zinc-700' }} bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
                         placeholder="seu@email.com"
                     >
                     @error('email')
@@ -64,7 +66,7 @@
                         name="password"
                         required
                         value="password"
-                        class="w-full rounded-xl border {{ $errors->has('password') ? 'border-red-500 ring-1 ring-red-500' : 'border-zinc-700' }} bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors"
+                        class="w-full rounded-xl border {{ $errors->has('password') ? 'border-red-500 ring-1 ring-red-500' : 'border-zinc-700' }} bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
                         placeholder="Sua senha"
                     >
                     @error('password')
@@ -78,7 +80,7 @@
                         <input
                             type="checkbox"
                             name="remember"
-                            class="rounded border-zinc-700 bg-zinc-950 text-red-600 focus:ring-red-500 focus:ring-offset-zinc-900"
+                            class="rounded border-zinc-700 bg-zinc-950 text-brand focus:ring-brand focus:ring-offset-zinc-900"
                         >
                         <span>Lembrar de mim</span>
                     </label>
@@ -88,7 +90,7 @@
                 <!-- Botão de Ação -->
                 <button
                     type="submit"
-                    class="w-full rounded-xl bg-red-600 py-2.5 text-sm font-semibold text-white shadow-md shadow-red-600/20 hover:bg-red-500 active:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
+                    class="w-full rounded-xl bg-brand py-2.5 text-sm font-semibold text-white shadow-md shadow-brand/25 hover:bg-brand-600 active:bg-brand-800 transition-colors focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:ring-offset-zinc-950"
                 >
                     Entrar na Plataforma
                 </button>
