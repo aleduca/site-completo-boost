@@ -5,23 +5,6 @@
 @source '../views/**/*.blade.php';
 
 @theme {
-    --font-sans: 'Kode Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-    --font-mono: 'Kode Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-
-    --color-brand-50: #f5f3f9;
-    --color-brand-100: #eae6f3;
-    --color-brand-200: #d6cee8;
-    --color-brand-300: #b8abd7;
-    --color-brand-400: #9380c2;
-    --color-brand-500: #745fa9;
-    --color-brand-600: #5e4e8d;
-    --color-brand: #4c3f72;
-    --color-brand-700: #4c3f72;
-    --color-brand-800: #3b315a;
-    --color-brand-900: #2b2442;
-    --color-brand-950: #1a1628;
-}
-
-body, button, input, select, textarea {
-    font-family: 'Kode Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
 }

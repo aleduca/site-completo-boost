@@ -7,16 +7,14 @@
 
     <title>{{ $title ?? 'Clube Full-Stack - Aulas do YouTube' }}</title>
 
-    <!-- Google Fonts: Kode Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
 
     <!-- Styles and Scripts via Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body
-    class="min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased selection:bg-brand-600 selection:text-white"
+    class="min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased selection:bg-red-500 selection:text-white"
     x-data="{ sidebarOpen: true, mobileSidebarOpen: false }"
 >
     <!-- Header -->

@@ -11,10 +11,10 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             @forelse ($courses as $course)
-                <div class="rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-6 flex flex-col justify-between hover:border-brand-500/40 hover:bg-zinc-900/90 transition-all shadow-sm">
+                <div class="rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-6 flex flex-col justify-between hover:border-zinc-700 hover:bg-zinc-900/90 transition-all">
                     <div>
                         <div class="flex items-center justify-between text-xs text-zinc-400 mb-3">
-                            <span class="inline-flex items-center gap-1.5 rounded-full bg-brand/15 px-2.5 py-0.5 font-medium text-brand-300 border border-brand/35">
+                            <span class="inline-flex items-center gap-1.5 rounded-full bg-red-500/10 px-2.5 py-0.5 font-medium text-red-400 border border-red-500/20">
                                 Curso Completo
                             </span>
                             <span>{{ $course->lessons_count }} {{ $course->lessons_count === 1 ? 'aula' : 'aulas' }}</span>
@@ -27,7 +27,7 @@
                         <span class="text-xs text-zinc-500">Gratuito</span>
                         <a
                             href="{{ route('home', ['search' => $course->title]) }}"
-                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-300 hover:text-brand-200 transition-colors"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-red-400 hover:text-red-300 transition-colors"
                         >
                             <span>Ver aulas deste curso</span>
                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">

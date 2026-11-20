@@ -3,8 +3,8 @@
         <!-- Topo: Título da Seção e Introdução -->
         <div class="flex flex-col gap-2 border-b border-zinc-800/80 pb-6">
             <div class="flex items-center gap-2">
-                <span class="inline-flex h-2.5 w-2.5 rounded-full bg-brand-400 animate-pulse"></span>
-                <span class="text-xs font-semibold uppercase tracking-wider text-brand-300">Conteúdo Gratuito</span>
+                <span class="inline-flex h-2.5 w-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-red-400">Conteúdo Gratuito</span>
             </div>
             <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
                 Aulas do Clube Full-Stack
@@ -29,7 +29,7 @@
                         name="search"
                         value="{{ $search }}"
                         placeholder="Buscar por título da aula ou categoria..."
-                        class="w-full rounded-xl border border-zinc-700/80 bg-zinc-950/80 pl-11 pr-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400 transition-colors"
+                        class="w-full rounded-xl border border-zinc-700/80 bg-zinc-950/80 pl-11 pr-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors"
                     >
                 </div>
 
@@ -37,7 +37,7 @@
                 <div class="flex items-center gap-2">
                     <select
                         name="category"
-                        class="rounded-xl border border-zinc-700/80 bg-zinc-950/80 px-3.5 py-2.5 text-sm text-zinc-200 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400 transition-colors"
+                        class="rounded-xl border border-zinc-700/80 bg-zinc-950/80 px-3.5 py-2.5 text-sm text-zinc-200 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 transition-colors"
                     >
                         <option value="">Todas as Categorias</option>
                         @foreach ($categories as $category)
@@ -50,7 +50,7 @@
                     <!-- Botão Filtrar -->
                     <button
                         type="submit"
-                        class="inline-flex items-center justify-center rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-600 active:bg-brand-800 transition-colors shadow-sm shadow-brand/30 ring-1 ring-brand-400/40 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-zinc-950 cursor-pointer"
+                        class="inline-flex items-center justify-center rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-red-500 active:bg-red-700 transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-zinc-950"
                     >
                         Filtrar
                     </button>
@@ -73,14 +73,14 @@
                 <span class="text-zinc-500 font-medium mr-1">Filtro rápido:</span>
                 <a
                     href="{{ route('home', ['search' => $search]) }}"
-                    class="rounded-lg px-2.5 py-1 font-medium transition-colors {{ empty($selectedCategory) ? 'bg-brand text-white ring-1 ring-brand-400/40 shadow-sm shadow-brand/30' : 'text-zinc-400 hover:bg-zinc-800 hover:text-brand-300' }}"
+                    class="rounded-lg px-2.5 py-1 font-medium transition-colors {{ empty($selectedCategory) ? 'bg-zinc-700 text-white' : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200' }}"
                 >
                     Todas
                 </a>
                 @foreach ($categories as $category)
                     <a
                         href="{{ route('home', ['category' => $category->slug, 'search' => $search]) }}"
-                        class="rounded-lg px-2.5 py-1 font-medium transition-colors {{ $selectedCategory === $category->slug ? 'bg-brand text-white ring-1 ring-brand-400/40 shadow-sm shadow-brand/30' : 'text-zinc-400 hover:bg-zinc-800 hover:text-brand-300' }}"
+                        class="rounded-lg px-2.5 py-1 font-medium transition-colors {{ $selectedCategory === $category->slug ? 'bg-red-600 text-white' : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200' }}"
                     >
                         {{ $category->name }}
                     </a>
@@ -133,7 +133,7 @@
                 <div class="mt-6">
                     <a
                         href="{{ route('home') }}"
-                        class="inline-flex items-center rounded-xl bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600 transition-colors ring-1 ring-brand-400/40 shadow-sm shadow-brand/30"
+                        class="inline-flex items-center rounded-xl bg-zinc-800 px-4 py-2 text-sm font-semibold text-zinc-200 hover:bg-zinc-700 hover:text-white transition-colors"
                     >
                         Ver todas as aulas
                     </a>
