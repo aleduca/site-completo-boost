@@ -77,17 +77,32 @@
         </a>
     </nav>
 
-    <!-- Rodapé da Sidebar Mobile: Login -->
+    <!-- Rodapé da Sidebar Mobile: Login ou Logout -->
     <div class="border-t border-zinc-800 pt-3">
-        <a
-            href="{{ route('login') }}"
-            class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
-        >
-            <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-            </svg>
-            <span>Login / Entrar</span>
-        </a>
+        @auth
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button
+                    type="submit"
+                    class="w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-400 hover:bg-zinc-800 hover:text-red-300 transition-colors"
+                >
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                    </svg>
+                    <span>Sair da Conta</span>
+                </button>
+            </form>
+        @else
+            <a
+                href="{{ route('login') }}"
+                class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
+            >
+                <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                </svg>
+                <span>Login / Entrar</span>
+            </a>
+        @endauth
     </div>
 </aside>
 
@@ -163,26 +178,51 @@
         </a>
     </nav>
 
-    <!-- Rodapé da Sidebar Desktop: Login -->
+    <!-- Rodapé da Sidebar Desktop: Login ou Logout -->
     <div class="border-t border-zinc-800 p-3">
-        <a
-            href="{{ route('login') }}"
-            class="group flex items-center rounded-xl p-3 text-sm font-medium transition-all text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-100"
-            :class="sidebarOpen ? 'gap-3.5 justify-start' : 'justify-center'"
-            title="Login"
-        >
-            <svg class="h-5 w-5 shrink-0 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-            </svg>
-            <span
-                x-show="sidebarOpen"
-                x-transition:enter="transition-opacity ease-out duration-150 delay-75"
-                x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100"
-                class="whitespace-nowrap"
+        @auth
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button
+                    type="submit"
+                    class="w-full group flex items-center rounded-xl p-3 text-sm font-medium transition-all text-red-400 hover:bg-zinc-800/80 hover:text-red-300"
+                    :class="sidebarOpen ? 'gap-3.5 justify-start' : 'justify-center'"
+                    title="Sair"
+                >
+                    <svg class="h-5 w-5 shrink-0 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                    </svg>
+                    <span
+                        x-show="sidebarOpen"
+                        x-transition:enter="transition-opacity ease-out duration-150 delay-75"
+                        x-transition:enter-start="opacity-0"
+                        x-transition:enter-end="opacity-100"
+                        class="whitespace-nowrap"
+                    >
+                        Sair
+                    </span>
+                </button>
+            </form>
+        @else
+            <a
+                href="{{ route('login') }}"
+                class="group flex items-center rounded-xl p-3 text-sm font-medium transition-all text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-100"
+                :class="sidebarOpen ? 'gap-3.5 justify-start' : 'justify-center'"
+                title="Login"
             >
-                Login
-            </span>
-        </a>
+                <svg class="h-5 w-5 shrink-0 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                </svg>
+                <span
+                    x-show="sidebarOpen"
+                    x-transition:enter="transition-opacity ease-out duration-150 delay-75"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    class="whitespace-nowrap"
+                >
+                    Login
+                </span>
+            </a>
+        @endauth
     </div>
 </aside>

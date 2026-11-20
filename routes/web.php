@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Models\Category;
 use App\Models\Course;
@@ -9,17 +10,21 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/lessons', [HomeController::class, 'index'])->name('lessons.index');
 
 Route::get('/courses', function () {
-    $courses = Course::withCount('lessons')->orderBy('title')->get();
+	$courses = Course::withCount('lessons')->orderBy('title')->get();
 
-    return view('courses.index', compact('courses'));
+	return view('courses.index', compact('courses'));
 })->name('courses.index');
 
 Route::get('/categories', function () {
-    $categories = Category::withCount('lessons')->orderBy('name')->get();
+	$categories = Category::withCount('lessons')->orderBy('name')->get();
 
-    return view('categories.index', compact('categories'));
+	return view('categories.index', compact('categories'));
 })->name('categories.index');
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+// Rotas de Autenticação
+Route::middleware('guest')->group(function () {
+	Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+	Route::post('/login', [AuthController::class, 'login']);
+});
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');

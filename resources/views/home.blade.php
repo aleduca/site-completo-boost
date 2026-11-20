@@ -1,5 +1,28 @@
 <x-layouts.app title="Aulas do YouTube">
     <div class="mx-auto max-w-5xl space-y-8">
+        <!-- Flash Messages -->
+        @if (session('success'))
+            <div class="flex items-start gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-xs sm:text-sm text-emerald-400">
+                <svg class="h-5 w-5 shrink-0 text-emerald-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+                <div class="leading-relaxed">
+                    {{ session('success') }}
+                </div>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="flex items-start gap-3 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-xs sm:text-sm text-red-400">
+                <svg class="h-5 w-5 shrink-0 text-red-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                </svg>
+                <div class="leading-relaxed">
+                    {{ session('error') }}
+                </div>
+            </div>
+        @endif
+
         <!-- Topo: Título da Seção e Introdução -->
         <div class="flex flex-col gap-2 border-b border-zinc-800/80 pb-6">
             <div class="flex items-center gap-2">
