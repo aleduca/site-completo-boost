@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Lesson;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -20,19 +19,7 @@ class HomeController extends Controller
 
         $lessons = Lesson::query()
             ->with(['category', 'course'])
-            ->when($search !== '', function (Builder $query) use ($search): void {
-                $query->where(function (Builder $subQuery) use ($search): void {
-                    $subQuery->where('title', 'like', "%{$search}%")
-                        ->orWhereHas('category', function (Builder $categoryQuery) use ($search): void {
-                            $categoryQuery->where('name', 'like', "%{$search}%");
-                        });
-                });
-            })
-            ->when($selectedCategory !== '', function (Builder $query) use ($selectedCategory): void {
-                $query->whereHas('category', function (Builder $categoryQuery) use ($selectedCategory): void {
-                    $categoryQuery->where('slug', $selectedCategory);
-                });
-            })
+            ->filter($search, $selectedCategory)
             ->latest('id')
             ->paginate(8)
             ->withQueryString();
