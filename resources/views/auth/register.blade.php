@@ -13,10 +13,23 @@
             <p class="text-xs sm:text-sm text-zinc-400 mt-1">Preencha seus dados para começar a estudar</p>
         </div>
 
-        <form action="#" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <!-- Flash Message de Erro -->
+        @if (session('error'))
+            <div class="mb-5 flex items-start gap-3 rounded-xl border border-red-500/30 bg-red-500/10 p-3.5 text-xs sm:text-sm text-red-400">
+                <svg class="h-5 w-5 shrink-0 text-red-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                </svg>
+                <div class="leading-relaxed">
+                    <strong class="font-semibold block">Erro:</strong>
+                    <span>{{ session('error') }}</span>
+                </div>
+            </div>
+        @endif
+
+        <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
 
-            <!-- CARD 1: Dados da Conta (name, email, password) -->
+            <!-- CARD 1: Dados Obrigatórios da Conta (name, email, password) -->
             <div class="rounded-2xl border border-zinc-800 bg-zinc-900/90 p-6 sm:p-8 shadow-xl space-y-4">
                 <div class="border-b border-zinc-800 pb-3">
                     <h3 class="text-sm font-semibold text-zinc-200 flex items-center gap-2">
@@ -25,46 +38,68 @@
                         </svg>
                         <span>Informações da Conta</span>
                     </h3>
+                    <p class="text-xs text-zinc-500 mt-0.5">Campos obrigatórios para criar seu acesso</p>
                 </div>
 
                 <!-- Campo Name -->
                 <div>
-                    <label for="name" class="block text-xs font-medium text-zinc-300 mb-1.5">Nome Completo</label>
+                    <label for="name" class="block text-xs font-medium text-zinc-300 mb-1.5">
+                        Nome Completo <span class="text-red-400">*</span>
+                    </label>
                     <input
                         type="text"
                         id="name"
                         name="name"
+                        value="{{ old('name') }}"
+                        required
+                        autofocus
                         placeholder="Ex: Alexandre Santos"
-                        class="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
+                        class="w-full rounded-xl border @error('name') border-red-500 ring-1 ring-red-500 @else border-zinc-700 @enderror bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
                     >
+                    @error('name')
+                        <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Campo Email -->
                 <div>
-                    <label for="email" class="block text-xs font-medium text-zinc-300 mb-1.5">E-mail</label>
+                    <label for="email" class="block text-xs font-medium text-zinc-300 mb-1.5">
+                        E-mail <span class="text-red-400">*</span>
+                    </label>
                     <input
                         type="email"
                         id="email"
                         name="email"
+                        value="{{ old('email') }}"
+                        required
                         placeholder="seu@email.com"
-                        class="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
+                        class="w-full rounded-xl border @error('email') border-red-500 ring-1 ring-red-500 @else border-zinc-700 @enderror bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
                     >
+                    @error('email')
+                        <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Campo Password -->
                 <div>
-                    <label for="password" class="block text-xs font-medium text-zinc-300 mb-1.5">Senha</label>
+                    <label for="password" class="block text-xs font-medium text-zinc-300 mb-1.5">
+                        Senha <span class="text-red-400">*</span>
+                    </label>
                     <input
                         type="password"
                         id="password"
                         name="password"
-                        placeholder="Crie uma senha segura"
-                        class="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
+                        required
+                        placeholder="Mínimo de 6 caracteres"
+                        class="w-full rounded-xl border @error('password') border-red-500 ring-1 ring-red-500 @else border-zinc-700 @enderror bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
                     >
+                    @error('password')
+                        <p class="mt-1 text-xs text-red-400">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
-            <!-- CARD 2: Upload do Avatar (Separado logo abaixo) -->
+            <!-- CARD 2: Upload do Avatar (Opcional - Separado logo abaixo) -->
             <div
                 x-data="{
                     avatarPreview: null,
@@ -78,13 +113,18 @@
                 class="rounded-2xl border border-zinc-800 bg-zinc-900/90 p-6 sm:p-8 shadow-xl space-y-4"
             >
                 <div class="border-b border-zinc-800 pb-3">
-                    <h3 class="text-sm font-semibold text-zinc-200 flex items-center gap-2">
-                        <svg class="h-4 w-4 text-brand-300" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                        </svg>
-                        <span>Foto de Perfil (Avatar)</span>
-                    </h3>
-                    <p class="text-xs text-zinc-400 mt-1">Envie uma imagem para identificar seu perfil na plataforma</p>
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                            <svg class="h-4 w-4 text-brand-300" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                            </svg>
+                            <span>Foto de Perfil</span>
+                        </h3>
+                        <span class="rounded-full bg-zinc-800 px-2 py-0.5 text-[10px] font-medium text-zinc-400 border border-zinc-700/60">
+                            Opcional
+                        </span>
+                    </div>
+                    <p class="text-xs text-zinc-400 mt-1">O avatar é opcional e você também poderá enviá-lo depois no seu perfil</p>
                 </div>
 
                 <!-- Campo de Upload do Avatar -->
@@ -117,7 +157,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
                             </svg>
                             <span class="text-xs font-semibold text-zinc-200">Clique para selecionar uma foto</span>
-                            <span class="text-[11px] text-zinc-500 mt-0.5">PNG, JPG ou WEBP (máx. 2MB)</span>
+                            <span class="text-[11px] text-zinc-500 mt-0.5">PNG, JPG ou WEBP (opcional)</span>
                             <input
                                 type="file"
                                 id="avatar"
@@ -131,12 +171,12 @@
                 </div>
             </div>
 
-            <!-- Botão de Ação -->
+            <!-- Botão de Envio do Formulário -->
             <button
-                type="button"
+                type="submit"
                 class="w-full rounded-xl bg-brand py-2.5 text-sm font-semibold text-white shadow-md shadow-brand/25 hover:bg-brand-600 active:bg-brand-800 transition-colors focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:ring-offset-zinc-950"
             >
-                Cadastrar
+                Criar Minha Conta
             </button>
 
             <!-- Link para Login -->

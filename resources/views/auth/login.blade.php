@@ -49,7 +49,7 @@
                         value="{{ old('email', 'admin@clubefullstack.com') }}"
                         required
                         autofocus
-                        class="w-full rounded-xl border {{ $errors->has('email') ? 'border-red-500 ring-1 ring-red-500' : 'border-zinc-700' }} bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
+                        class="w-full rounded-xl border @error('email') border-red-500 ring-1 ring-red-500 @else border-zinc-700 @enderror bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
                         placeholder="seu@email.com"
                     >
                     @error('email')
@@ -66,7 +66,7 @@
                         name="password"
                         required
                         value="password"
-                        class="w-full rounded-xl border {{ $errors->has('password') ? 'border-red-500 ring-1 ring-red-500' : 'border-zinc-700' }} bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
+                        class="w-full rounded-xl border @error('password') border-red-500 ring-1 ring-red-500 @else border-zinc-700 @enderror bg-zinc-950 px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-colors"
                         placeholder="Sua senha"
                     >
                     @error('password')
