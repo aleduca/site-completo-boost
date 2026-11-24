@@ -76,6 +76,19 @@
             </svg>
             <span>Categorias</span>
         </a>
+
+        @auth
+            <!-- Link Perfil Mobile -->
+            <a
+                href="{{ route('profile.edit') }}"
+                class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors {{ request()->routeIs('profile*') ? 'bg-brand/20 text-brand-300 ring-1 ring-brand-500/30' : 'text-zinc-300 hover:bg-zinc-800 hover:text-white' }}"
+            >
+                <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+                <span>Perfil</span>
+            </a>
+        @endauth
     </nav>
 
     <!-- Rodapé da Sidebar Mobile: Login ou Logout -->
@@ -177,6 +190,29 @@
                 Categorias
             </span>
         </a>
+
+        @auth
+            <!-- Link Perfil Desktop -->
+            <a
+                href="{{ route('profile.edit') }}"
+                class="group flex items-center rounded-xl p-3 text-sm font-medium transition-all {{ request()->routeIs('profile*') ? 'bg-brand/20 text-brand-300 ring-1 ring-brand-500/30' : 'text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-100' }}"
+                :class="sidebarOpen ? 'gap-3.5 justify-start' : 'justify-center'"
+                title="Perfil"
+            >
+                <svg class="h-5 w-5 shrink-0 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+                <span
+                    x-show="sidebarOpen"
+                    x-transition:enter="transition-opacity ease-out duration-150 delay-75"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    class="whitespace-nowrap"
+                >
+                    Perfil
+                </span>
+            </a>
+        @endauth
     </nav>
 
     <!-- Rodapé da Sidebar Desktop: Login ou Logout -->

@@ -18,9 +18,13 @@ class AvatarService
 
         $path = $file->store('avatars', 'public');
 
-        return $user->avatar()->create([
+        $avatar = $user->avatar()->create([
             'path' => $path,
         ]);
+
+        $user->setRelation('avatar', $avatar);
+
+        return $avatar;
     }
 
     /**
@@ -28,7 +32,7 @@ class AvatarService
      */
     public function delete(User $user): bool
     {
-        $existingAvatar = $user->avatar;
+        $existingAvatar = $user->avatar()->first();
 
         if ($existingAvatar !== null) {
             if (Storage::disk('public')->exists($existingAvatar->path)) {
@@ -36,9 +40,12 @@ class AvatarService
             }
 
             $existingAvatar->delete();
+            $user->unsetRelation('avatar');
 
             return true;
         }
+
+        $user->unsetRelation('avatar');
 
         return false;
     }
