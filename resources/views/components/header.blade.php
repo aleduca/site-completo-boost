@@ -49,9 +49,17 @@
                     <p class="font-medium text-zinc-200">Olá, <span class="text-brand-300 font-semibold">{{ auth()->user()->name }}</span>!</p>
                     <p class="text-zinc-500">Bem-vindo de volta</p>
                 </div>
-                <div class="flex h-9 w-9 items-center justify-center rounded-full bg-brand/25 text-brand-300 ring-1 ring-brand-500/40 text-sm font-semibold">
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                </div>
+                @if (auth()->user()->avatar)
+                    <img
+                        src="{{ asset('storage/' . auth()->user()->avatar->path) }}"
+                        alt="{{ auth()->user()->name }}"
+                        class="h-9 w-9 rounded-full object-cover ring-1 ring-brand-500/40"
+                    >
+                @else
+                    <div class="flex h-9 w-9 items-center justify-center rounded-full bg-brand/25 text-brand-300 ring-1 ring-brand-500/40 text-sm font-semibold">
+                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                    </div>
+                @endif
                 <!-- Botão Sair / Logout -->
                 <form action="{{ route('logout') }}" method="POST" class="inline">
                     @csrf

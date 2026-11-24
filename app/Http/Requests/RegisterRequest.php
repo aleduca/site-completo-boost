@@ -28,6 +28,7 @@ class RegisterRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class, 'email')],
             'password' => ['required', 'string', 'min:6'],
+            'avatar' => ['nullable', 'image', 'mimes:png,jpeg,jpg', 'max:2048'],
         ];
     }
 
@@ -46,6 +47,9 @@ class RegisterRequest extends FormRequest
             'email.unique' => 'Este e-mail já está cadastrado em nosso sistema.',
             'password.required' => 'O campo senha é obrigatório.',
             'password.min' => 'A senha deve conter pelo menos 6 caracteres.',
+            'avatar.image' => 'O arquivo enviado deve ser uma imagem válida.',
+            'avatar.mimes' => 'O avatar deve ser uma imagem nos formatos .png, .jpeg ou .jpg.',
+            'avatar.max' => 'A imagem do avatar não pode ser maior que 2MB.',
         ];
     }
 }
